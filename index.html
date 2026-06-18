@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Salina — Tell Us How It Felt</title>
+<meta name="description" content="A few quick thoughts before we open the doors. Help us get Salina just right." />
+<meta name="robots" content="noindex" />
+<style>
+/* ───────────── Fonts ───────────── */
+@font-face { font-family:"Damn Sans"; src:url("assets/fonts/DamnSans-Light.otf") format("opentype"); font-weight:300; font-display:swap; }
+@font-face { font-family:"Damn Sans"; src:url("assets/fonts/DamnSans.otf") format("opentype"); font-weight:400; font-display:swap; }
+@font-face { font-family:"Damn Sans"; src:url("assets/fonts/DamnSans-Medium.otf") format("opentype"); font-weight:500; font-display:swap; }
+@font-face { font-family:"Damn Sans"; src:url("assets/fonts/DamnSans-Bold.otf") format("opentype"); font-weight:700; font-display:swap; }
+@font-face { font-family:"JetBrains Mono"; src:url("assets/fonts/JetBrainsMono-Light.ttf") format("truetype"); font-weight:300; font-display:swap; }
+@font-face { font-family:"JetBrains Mono"; src:url("assets/fonts/JetBrainsMono-Regular.ttf") format("truetype"); font-weight:400; font-display:swap; }
+@font-face { font-family:"JetBrains Mono"; src:url("assets/fonts/JetBrainsMono-Bold.ttf") format("truetype"); font-weight:700; font-display:swap; }
+
+/* ───────────── Tokens ───────────── */
+:root{
+  --basil:#2D4A37;
+  --basil-darker:#243B2C;
+  --garden-sage:#708849;
+  --limestone:#E7E4D1;
+  --apertivo:#C16439;
+  --apertivo-bright:#D2774A;
+  --rose:#E3C4BE;
+  --mute:#A9B49A;
+  --display:"Damn Sans","Cooper Std",Georgia,serif;
+  --mono:"JetBrains Mono","IBM Plex Mono","Courier New",monospace;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{ -webkit-text-size-adjust:100%; }
+body{
+  margin:0;
+  font-family:var(--mono);
+  font-weight:400;
+  color:var(--limestone);
+  background:var(--basil);
+  line-height:1.55;
+  font-size:16px;
+}
+.wrap{
+  position:relative; z-index:1;
+  max-width:640px;
+  margin:0 auto;
+  padding:0 22px 0;
+}
+
+/* ───────────── Header / floral hero ───────────── */
+header{ text-align:center; padding-top:40px; }
+.logo{
+  width:100%; max-width:290px; height:auto;
+  display:block; margin:0 auto 4px;
+}
+.eyebrow{
+  font-family:var(--mono); font-weight:400;
+  font-size:11px; letter-spacing:.34em; text-transform:uppercase;
+  color:var(--rose); margin:6px 0 12px;
+}
+h1{
+  font-family:var(--display); font-weight:700;
+  font-size:clamp(32px,8.5vw,46px); line-height:1.0;
+  color:var(--limestone); margin:0 0 16px; letter-spacing:.005em;
+}
+.lede{
+  font-family:var(--mono); font-weight:300; font-size:15px;
+  color:var(--limestone); opacity:.88; max-width:470px; margin:0 auto;
+}
+.rule{ width:46px; height:3px; background:var(--apertivo); border:0; border-radius:2px; margin:30px auto 4px; }
+
+/* ───────────── Questions ───────────── */
+.q{
+  background:rgba(231,228,209,.045);
+  border:1px solid rgba(231,228,209,.16);
+  border-radius:14px;
+  padding:22px 20px 20px;
+  margin:18px 0;
+}
+.q-num{
+  font-family:var(--mono); font-weight:700; font-size:12px;
+  letter-spacing:.16em; color:var(--rose); display:block; margin-bottom:8px;
+}
+.q-label{
+  font-family:var(--display); font-weight:500; font-size:19px;
+  line-height:1.22; color:var(--limestone); display:block;
+}
+.q-help{
+  font-family:var(--mono); font-weight:300; font-size:13px;
+  color:var(--mute); margin:8px 0 0;
+}
+
+/* choice chips */
+.choices{ display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+.choice{ position:relative; }
+.choice input{ position:absolute; opacity:0; inset:0; cursor:pointer; }
+.choice span{
+  display:inline-block; font-family:var(--mono); font-weight:400;
+  font-size:14px; letter-spacing:.02em; padding:10px 18px;
+  border:1.5px solid rgba(231,228,209,.32); border-radius:999px;
+  color:var(--limestone); background:transparent;
+  transition:all .14s ease; user-select:none;
+}
+.choice input:checked + span{
+  background:var(--apertivo); border-color:var(--apertivo); color:var(--limestone);
+}
+.choice input:focus-visible + span{ outline:3px solid var(--rose); outline-offset:2px; }
+
+/* text inputs */
+textarea, input[type="text"], input[type="email"]{
+  width:100%; margin-top:16px;
+  font-family:var(--mono); font-weight:400; font-size:15px;
+  color:var(--limestone);
+  background:rgba(0,0,0,.20);
+  border:1.5px solid rgba(231,228,209,.24);
+  border-radius:10px; padding:13px 14px; resize:vertical;
+  transition:border-color .14s ease, box-shadow .14s ease;
+}
+textarea{ min-height:84px; }
+textarea::placeholder, input::placeholder{ color:rgba(231,228,209,.45); font-weight:300; }
+textarea:focus, input:focus{
+  outline:none; border-color:var(--rose);
+  box-shadow:0 0 0 3px rgba(227,196,190,.22);
+}
+.conditional{ display:none; }
+.conditional.show{ display:block; }
+.name-row{ display:flex; gap:10px; }
+.name-row input{ flex:1; min-width:0; }
+@media (max-width:420px){ .name-row{ flex-direction:column; gap:0; } }
+
+/* views — sun rating */
+.views-row{ display:flex; gap:8px; margin-top:16px; flex-wrap:wrap; }
+.sun{ position:relative; }
+.sun input{ position:absolute; opacity:0; inset:0; cursor:pointer; }
+.sun span{
+  display:flex; align-items:center; justify-content:center;
+  width:46px; height:46px; font-size:22px;
+  border:1.5px solid rgba(231,228,209,.32); border-radius:12px;
+  background:transparent; filter:grayscale(1) opacity(.5);
+  transition:all .14s ease;
+}
+.sun input:checked + span, .sun:hover span{
+  filter:none; border-color:var(--apertivo); background:rgba(193,100,57,.20); transform:translateY(-2px);
+}
+.sun input:focus-visible + span{ outline:3px solid var(--rose); outline-offset:2px; }
+
+/* ───────────── Submit ───────────── */
+.submit-wrap{ text-align:center; margin-top:30px; }
+button.submit{
+  font-family:var(--mono); font-weight:700; font-size:14px;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--limestone);
+  background:var(--apertivo); border:0; border-radius:999px;
+  padding:17px 46px; cursor:pointer;
+  transition:background .15s ease, transform .1s ease;
+}
+button.submit:hover{ background:var(--apertivo-bright); }
+button.submit:active{ transform:translateY(1px); }
+button.submit:disabled{ opacity:.55; cursor:default; }
+.err{ color:var(--rose); font-size:13px; margin-top:14px; min-height:18px; }
+
+/* ───────────── Floral footer band ───────────── */
+.floral-band{
+  margin-top:46px;
+  height:120px;
+  background:url("assets/botanical-pattern.png") repeat-x center;
+  background-size:auto 100%;
+}
+footer{ text-align:center; padding:22px 0 40px; }
+footer .cp{
+  font-family:var(--mono); font-weight:400; font-size:10px;
+  letter-spacing:.26em; text-transform:uppercase; color:var(--mute);
+}
+
+/* ───────────── Thank-you state ───────────── */
+#thanks{ display:none; text-align:center; padding-top:46px; }
+#thanks.show{ display:block; }
+#thanks .logo{ max-width:240px; margin-bottom:14px; }
+#thanks h2{
+  font-family:var(--display); font-weight:700;
+  font-size:clamp(30px,7.5vw,42px); color:var(--limestone); margin:6px 0 14px;
+}
+#thanks p{
+  font-family:var(--mono); font-weight:300; font-size:15px;
+  color:var(--limestone); opacity:.9; max-width:400px; margin:0 auto;
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <!-- FORM -->
+  <div id="formView">
+    <header>
+      <img class="logo" src="assets/logo-rose.png" alt="Salina Rooftop" />
+      <p class="eyebrow">Friends &amp; Family Preview</p>
+      <h1>Tell us how it felt.</h1>
+      <p class="lede">You got here first — before the rest of Paso even knows what's blooming on the roof. A few honest minutes from you helps us get Salina exactly right before we open the doors.</p>
+      <hr class="rule" />
+    </header>
+
+    <form id="feedbackForm" novalidate>
+
+      <!-- Q1 — service team -->
+      <div class="q">
+        <span class="q-num">01</span>
+        <label class="q-label">Was the service team personable, attentive when serving you, and did they show strong menu knowledge?</label>
+        <div class="choices" role="radiogroup" aria-label="Service team">
+          <label class="choice"><input type="radio" name="service_team" value="Yes"><span>Yes — all three</span></label>
+          <label class="choice"><input type="radio" name="service_team" value="No"><span>Not quite</span></label>
+        </div>
+        <textarea class="conditional" id="service_team_explain" name="service_team_explain" placeholder="If not quite — tell us where it slipped (warmth, attentiveness, or menu knowledge)."></textarea>
+      </div>
+
+      <!-- Q2 — unclear/awkward -->
+      <div class="q">
+        <span class="q-num">02</span>
+        <label class="q-label">Did anything feel unclear or awkward as a guest?</label>
+        <p class="q-help">For example: pacing, menu clarity, finding your way up, or the flow of service.</p>
+        <div class="choices" role="radiogroup" aria-label="Anything unclear">
+          <label class="choice"><input type="radio" name="unclear_awkward" value="No"><span>No, smooth sailing</span></label>
+          <label class="choice"><input type="radio" name="unclear_awkward" value="Yes"><span>Yes — let me explain</span></label>
+        </div>
+        <textarea class="conditional" id="unclear_explain" name="unclear_explain" placeholder="What felt off?"></textarea>
+      </div>
+
+      <!-- Q3 — items to refine -->
+      <div class="q">
+        <span class="q-num">03</span>
+        <label class="q-label" for="refine_items">Any food or drink you'd love to see refined before we open?</label>
+        <p class="q-help">Name the item and what stood out — flavor, temperature, portion, presentation, or price.</p>
+        <textarea id="refine_items" name="refine_items" placeholder="e.g., The spritz was beautiful but a touch sweet…"></textarea>
+      </div>
+
+      <!-- Q4 — loved, don't change -->
+      <div class="q">
+        <span class="q-num">04</span>
+        <label class="q-label" for="loved_keep">What's one thing you loved that we should never change?</label>
+        <textarea id="loved_keep" name="loved_keep" placeholder="The thing that made the night."></textarea>
+      </div>
+
+      <!-- Q5 — one change -->
+      <div class="q">
+        <span class="q-num">05</span>
+        <label class="q-label" for="one_change">If we could change only ONE thing before opening, what should it be?</label>
+        <textarea id="one_change" name="one_change" placeholder="Be honest — this is the good stuff."></textarea>
+      </div>
+
+      <!-- Q6 — three words -->
+      <div class="q">
+        <span class="q-num">06</span>
+        <label class="q-label" for="vibe_words">Three words for the vibe at Salina.</label>
+        <input type="text" id="vibe_words" name="vibe_words" placeholder="golden, easy, alive" />
+      </div>
+
+      <!-- Q7 — the views -->
+      <div class="q">
+        <span class="q-num">07</span>
+        <label class="q-label">And the big one… how were the views?</label>
+        <p class="q-help">Rate the rooftop. One sun = nice. Five suns = stole the whole show.</p>
+        <div class="views-row" role="radiogroup" aria-label="Views rating">
+          <label class="sun"><input type="radio" name="view_rating" value="1"><span>☀️</span></label>
+          <label class="sun"><input type="radio" name="view_rating" value="2"><span>☀️</span></label>
+          <label class="sun"><input type="radio" name="view_rating" value="3"><span>☀️</span></label>
+          <label class="sun"><input type="radio" name="view_rating" value="4"><span>☀️</span></label>
+          <label class="sun"><input type="radio" name="view_rating" value="5"><span>☀️</span></label>
+        </div>
+        <input type="text" id="view_note" name="view_note" placeholder="Optional: best seat in the house was…" />
+      </div>
+
+      <!-- Email signup -->
+      <div class="q">
+        <span class="q-num">✶</span>
+        <label class="q-label" for="first_name">Want first word on opening night?</label>
+        <p class="q-help">Leave your name and email and we'll save you a spot on the list. Totally optional.</p>
+        <div class="name-row">
+          <input type="text" id="first_name" name="first_name" placeholder="First name" autocomplete="given-name" />
+          <input type="text" id="last_name" name="last_name" placeholder="Last name" autocomplete="family-name" />
+        </div>
+        <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email" />
+      </div>
+
+      <div class="submit-wrap">
+        <button type="submit" class="submit" id="submitBtn">Send it up</button>
+        <div class="err" id="errMsg" role="alert"></div>
+      </div>
+    </form>
+  </div>
+
+  <!-- THANK YOU -->
+  <div id="thanks">
+    <img class="logo" src="assets/logo-rose.png" alt="Salina Rooftop" />
+    <h2>Thank you.</h2>
+    <p>You just helped shape opening night. We'll see you on the roof — first round's on the house if you mention this card.</p>
+  </div>
+</div>
+
+<div class="floral-band" aria-hidden="true"></div>
+<footer>
+  <p class="cp">Salina · Charlie Palmer Collective · Paso Robles</p>
+</footer>
+
+<script>
+/* ───────── Supabase config ───────── */
+const SUPABASE_URL = "https://afkjchshoktlmqrpopyk.supabase.co";
+const SUPABASE_KEY = "sb_publishable_-prKRSiYudfdwYxC1o4Rbw_PZlcJt89";
+const ENDPOINT = SUPABASE_URL + "/rest/v1/salina_feedback";
+
+/* ───────── Conditional explain fields ───────── */
+function bindConditional(name, showValue, fieldId){
+  document.querySelectorAll('input[name="'+name+'"]').forEach(function(r){
+    r.addEventListener('change', function(){
+      document.getElementById(fieldId).classList.toggle('show', r.checked && r.value === showValue);
+    });
+  });
+}
+bindConditional('service_team','No','service_team_explain');
+bindConditional('unclear_awkward','Yes','unclear_explain');
+
+/* ───────── Submit ───────── */
+const form = document.getElementById('feedbackForm');
+const btn = document.getElementById('submitBtn');
+const err = document.getElementById('errMsg');
+
+form.addEventListener('submit', async function(e){
+  e.preventDefault();
+  err.textContent = "";
+
+  const email = (document.getElementById('email').value || "").trim();
+  if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+    err.textContent = "That email doesn't look quite right — mind checking it?";
+    return;
+  }
+
+  const payload = {
+    service_team:         val('service_team'),
+    service_team_explain: txt('service_team_explain'),
+    unclear_awkward:      val('unclear_awkward'),
+    unclear_explain:      txt('unclear_explain'),
+    refine_items:         txt('refine_items'),
+    loved_keep:           txt('loved_keep'),
+    one_change:           txt('one_change'),
+    vibe_words:           txt('vibe_words'),
+    view_rating:          val('view_rating'),
+    view_note:            txt('view_note'),
+    first_name:           txt('first_name'),
+    last_name:            txt('last_name'),
+    email:                email || null,
+    source:               'friends_family'
+  };
+
+  btn.disabled = true;
+  btn.textContent = "Sending…";
+
+  try{
+    const res = await fetch(ENDPOINT, {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization':'Bearer ' + SUPABASE_KEY,
+        'Prefer':'return=minimal'
+      },
+      body: JSON.stringify(payload)
+    });
+    if(!res.ok){ throw new Error('HTTP ' + res.status); }
+    document.getElementById('formView').style.display = 'none';
+    document.getElementById('thanks').classList.add('show');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }catch(ex){
+    btn.disabled = false;
+    btn.textContent = "Send it up";
+    err.textContent = "Hmm — that didn't send. Check your connection and try once more.";
+  }
+});
+
+function val(name){ const c = form.querySelector('input[name="'+name+'"]:checked'); return c ? c.value : null; }
+function txt(id){ const el = document.getElementById(id); return el && el.value.trim() ? el.value.trim() : null; }
+</script>
+</body>
+</html>
